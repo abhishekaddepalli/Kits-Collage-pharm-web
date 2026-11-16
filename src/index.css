@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+:root {
+  --kits-primary: #52128B;
+  --kits-secondary: #32105B;
+  --kits-navy: #171238;
+  --kits-accent: #B21A83;
+  --kits-gold: #F2C34E;
+  --kits-bg: #FCFAFF;
+  --kits-surface: #F5F0FC;
+  --kits-card: #FFFFFF;
+  --kits-heading: #171238;
+  --kits-body: #3A3356;
+  --kits-link: #52128B;
+  --kits-btn-bg: #52128B;
+  --kits-btn-hover: #32105B;
+  --kits-header-bg: #FFFFFF;
+  --kits-nav-bg: #32105B;
+  --kits-footer-bg: #171238;
+  --kits-border: #E8DFF5;
+  --kits-font-heading: "Playfair Display", Georgia, serif;
+  --kits-font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+  --kits-font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --kits-radius-card: 16px;
+  --kits-radius-btn: 9999px;
+  --kits-container-max: 1280px;
+  --kits-section-py: 64px;
+}
+
+@layer base {
+  html {
+    font-family: var(--kits-font-body);
+    color: var(--kits-body);
+    background-color: var(--kits-bg);
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--kits-font-heading);
+  }
+
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom subtle scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(82, 18, 139, 0.22);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(82, 18, 139, 0.4);
+}

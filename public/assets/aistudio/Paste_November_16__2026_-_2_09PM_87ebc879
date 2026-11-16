@@ -1,0 +1,1825 @@
+# PROJECT: KITS College of Pharmacy for Women — Complete Website & CMS
+
+## 1. Project Objective
+
+Build a premium, modern, elegant, fully responsive institutional website for **KITS College of Pharmacy for Women**, with a complete custom Content Management System (CMS), powerful administration dashboard, AI-ready chatbot, and first-time installation wizard.
+
+Existing website:
+https://kitspharmacy.ac.in/
+
+This is a complete redesign, not a minor modification of the existing website.
+
+The project must include:
+
+1. Public-facing institutional website.
+2. Complete admin dashboard.
+3. Dynamic website theme and branding management.
+4. Header, footer, menu and navigation management.
+5. Page and content management system.
+6. Image, video and document media library.
+7. Homepage slider and banner management.
+8. AI chatbot management and FAQ knowledge base.
+9. Admission enquiry management.
+10. News, events and announcements.
+11. Academic and departmental management.
+12. SEO management.
+13. Website settings and configuration.
+14. First-time installation and setup wizard.
+15. Authentication and role management UI.
+16. Mobile-responsive admin and public interfaces.
+
+**IMPORTANT ARCHITECTURE REQUIREMENT**
+
+Build the entire frontend in Lovable.
+
+Do NOT use:
+- Supabase.
+- Supabase authentication.
+- Supabase database.
+- Supabase storage.
+- Firebase.
+- Any mandatory cloud backend.
+- Hardcoded external backend dependencies.
+
+The backend will be developed separately later using a custom backend with MySQL.
+
+Use a clean API-ready architecture with mock services and demo data for the current development stage.
+
+Do not pretend that frontend mock authentication, database configuration or file uploads provide production security. Clearly separate demo functionality from future backend functionality.
+
+---
+
+# 2. Design System and Branding
+
+Use the approved visual direction from the second design concept.
+
+### Brand identity
+
+Primary colors:
+
+- Royal Purple: #52128B
+- Deep Purple: #32105B
+- Dark Navy: #171238
+- Magenta: #B21A83
+- Champagne Gold: #F2C34E
+- White: #FFFFFF
+- Soft Lavender: #F5F0FC
+- Light Background: #FCFAFF
+
+These colors must be editable from the admin dashboard.
+
+### Design style
+
+Create a sophisticated, premium educational institution website.
+
+Visual inspiration:
+- Premium university websites.
+- Modern healthcare institutions.
+- International education portals.
+- Elegant editorial layouts.
+- Modern SaaS dashboard interfaces.
+
+Use:
+- Elegant typography.
+- Premium gradients.
+- Soft shadows.
+- Subtle glass effects.
+- Rounded cards.
+- Smooth hover animations.
+- Beautiful iconography.
+- Consistent spacing.
+- Large, high-quality photographs.
+- Modern section transitions.
+- Professional micro-interactions.
+
+Use Playfair Display or a similar elegant serif font for major headings and Inter for body text.
+
+Avoid:
+- Cheap-looking gradients.
+- Excessive animations.
+- Overcrowded layouts.
+- Generic templates.
+- Excessive rounded cards.
+- Unnecessary decorative elements.
+- Inconsistent typography.
+
+The result must look like a professionally designed university website.
+
+---
+
+# 3. Image and Media Requirements
+
+Use images and visual references from the existing website initially:
+
+https://kitspharmacy.ac.in/
+
+Reuse existing accessible images wherever possible:
+- College building.
+- Campus.
+- Laboratories.
+- Library.
+- Departments.
+- Faculty.
+- Events.
+- Achievements.
+- Campus activities.
+- Existing institutional logo.
+
+Also use suitable temporary pharmaceutical education photography where existing images are unavailable.
+
+Image sources can include the original website and appropriate royalty-free temporary stock images.
+
+Important:
+- Do not invent a new college logo.
+- Preserve the original logo wherever available.
+- Do not use unrelated university photographs.
+- Do not represent stock photographs as actual KITS students or faculty.
+- Every image must have editable alt text.
+- All images must be replaceable through the admin dashboard.
+- Never make external image URLs impossible to replace.
+- Create a centralized media/asset management structure.
+- Use responsive image sizing and lazy loading.
+
+Use temporary placeholder images for missing content.
+
+---
+
+# 4. Public Website — Complete Pages
+
+Build all pages with reusable components and a consistent design system.
+
+## 4.1 Homepage
+
+Create a visually impressive homepage.
+
+### A. Top information bar
+
+Include:
+- College location.
+- Examination portal.
+- Student portal.
+- Staff portal.
+- Language selector.
+- Important announcement shortcut.
+
+Everything must be editable from the admin dashboard.
+
+### B. Main header
+
+Include:
+- College logo.
+- College name.
+- Affiliation information.
+- PCI approval information.
+- Contact phone.
+- Working hours.
+- Prominent Apply Now button.
+
+Make the header sticky when scrolling.
+
+### C. Main navigation
+
+Create a premium navigation menu:
+
+- Home
+- About Us
+- Academics
+- Admissions
+- Departments
+- Campus Life
+- Achievements
+- Placements
+- Gallery
+- News & Events
+- Contact Us
+
+Use dropdown menus with smooth animations.
+
+Admin must be able to:
+- Add menus.
+- Edit menus.
+- Delete menus.
+- Change menu labels.
+- Change menu links.
+- Create nested menus.
+- Reorder menus using drag and drop.
+- Enable or disable individual menus.
+- Open links in a new tab.
+- Create custom navigation items.
+
+### D. Hero slider
+
+Create a premium full-width hero section with large photography.
+
+Use three or four editable slides.
+
+Suggested content:
+
+Slide 1:
+"Empowering Women in Pharmaceutical Sciences"
+
+Description:
+"Discover quality pharmaceutical education, research opportunities and a future filled with possibilities."
+
+Buttons:
+- Explore Programs
+- Apply Now
+
+Slide 2:
+"Building Tomorrow's Healthcare Professionals"
+
+Description:
+"Develop knowledge, skills and professional confidence through quality pharmaceutical education."
+
+Buttons:
+- Discover Academics
+- Know More
+
+Slide 3:
+"Learning Beyond Classrooms"
+
+Description:
+"Explore our academic facilities, laboratories and vibrant campus environment."
+
+Buttons:
+- Explore Campus
+- View Gallery
+
+Every slide must support:
+- Heading.
+- Subheading.
+- Description.
+- Desktop image.
+- Mobile image.
+- CTA buttons.
+- CTA links.
+- Background overlay.
+- Text positioning.
+- Animation.
+- Display order.
+- Active/inactive status.
+- Start and end dates.
+- Optional video background.
+
+Admin must manage everything.
+
+### E. Institutional highlights
+
+Display attractive counters and information cards.
+
+Suggested fields:
+- Established year.
+- Available programs.
+- Departments.
+- Faculty.
+- Institutional approvals.
+- Affiliation.
+
+Use verified information only. Unverified statistics must remain editable placeholders or be hidden.
+
+### F. About KITS
+
+Display:
+- College introduction.
+- College building photograph.
+- Short description.
+- Learn More button.
+- Institutional highlights.
+
+### G. Academic programs
+
+Create program cards for:
+- B.Pharmacy.
+- M.Pharmacy, only when current program approval and availability are verified.
+
+Each program should have:
+- Program name.
+- Qualification.
+- Duration.
+- Eligibility.
+- Course description.
+- Intake capacity.
+- Admission information.
+- Brochure.
+- Learn More button.
+- Enquiry button.
+
+Do not invent eligibility, fees, duration or approval details.
+
+### H. Admissions section
+
+Create an attractive admissions campaign section.
+
+Include:
+- Admission announcements.
+- Programs available.
+- Eligibility information.
+- Application process.
+- Important dates.
+- Enquiry form.
+- Download prospectus.
+- Contact admissions.
+
+Use editable campaign banners.
+
+### I. Departments
+
+Create visually attractive department cards:
+
+1. Pharmaceutics.
+2. Pharmacology.
+3. Pharmaceutical Chemistry.
+4. Pharmacognosy.
+5. Pharmaceutical Analysis.
+6. Pharmacy Practice.
+7. Biotechnology, if confirmed as an active department or discipline.
+
+Each department must have a separate detail page with:
+- Introduction.
+- Faculty members.
+- Department facilities.
+- Laboratories.
+- Research activities.
+- Publications.
+- Events.
+- Gallery.
+
+### J. Why Choose KITS
+
+Create an elegant institutional highlights section.
+
+Possible content:
+- Women's education.
+- Academic environment.
+- Practical laboratory learning.
+- Experienced faculty.
+- Student development.
+- Campus facilities.
+- Career guidance.
+
+Keep all claims editable and verifiable.
+
+### K. Campus Life
+
+Display:
+- Infrastructure.
+- Library.
+- Sports and Recreation.
+- Green Campus.
+- Medicinal Garden.
+- Hostel Facilities.
+- Canteen and Cafeteria.
+- Hospital or clinical facilities, if applicable.
+
+Each category must have images and a dedicated information page.
+
+### L. Achievements
+
+Include:
+- Student achievements.
+- Faculty achievements.
+- Awards.
+- Research achievements.
+- Institutional recognitions.
+- Events.
+
+### M. News and Events
+
+Create:
+- Latest news.
+- Upcoming events.
+- Previous events.
+- Announcements.
+- Event photographs.
+- Event details.
+
+Each item should support a dedicated detail page.
+
+### N. Placements
+
+Include:
+- Placement introduction.
+- Placement activities.
+- Recruiter logos.
+- Career guidance.
+- Training activities.
+- Placement achievements.
+
+Only display verified placement statistics and recruiters.
+
+### O. Testimonials
+
+Create a premium testimonial carousel.
+
+Fields:
+- Student name.
+- Photograph.
+- Designation or course.
+- Testimonial.
+- Graduation year.
+- Display status.
+
+Use actual approved testimonials only.
+
+### P. Photo and video gallery
+
+Create separate galleries for:
+- Campus.
+- Laboratories.
+- Cultural activities.
+- Sports.
+- Seminars.
+- Workshops.
+- College events.
+
+Support video embeds from YouTube.
+
+### Q. Contact section
+
+Display:
+
+KITS College of Pharmacy for Women
+
+Tirupati (V), Divili, Peddapuram Mandal, Kakinada District, Andhra Pradesh – 533433.
+
+Phone:
++91 97015 18708
+
+Phone:
+08852 247550
+
+Email:
+kitspharmacollege@gmail.com
+
+Working hours:
+9:30 AM – 4:30 PM.
+
+Include:
+- Click-to-call.
+- Click-to-email.
+- WhatsApp contact.
+- Google Maps embed.
+- Directions.
+- Contact enquiry form.
+
+Make contact information editable.
+
+### R. Footer
+
+Create a sophisticated multi-column footer.
+
+Include:
+- College logo.
+- Short introduction.
+- About links.
+- Academic links.
+- Admissions links.
+- Department links.
+- Campus life links.
+- Contact details.
+- Social media links.
+- Copyright.
+- Privacy Policy.
+- Terms and Conditions.
+- Sitemap.
+
+Footer columns, background, text colors, logo, links and content must all be editable.
+
+---
+
+# 5. Additional Public Website Pages
+
+Create the following complete pages.
+
+### About Us
+- College overview.
+- History.
+- Vision and Mission.
+- Principal's Message.
+- Governance.
+- Institutional objectives.
+- Quick Facts.
+
+### Academics
+- Academic overview.
+- Programs.
+- Academic calendar.
+- Syllabus.
+- Staff details.
+- Examination cell.
+- Examination notifications.
+- Results links.
+- Downloads.
+
+### Admissions
+- Admission overview.
+- Programs.
+- Eligibility.
+- Admission procedure.
+- Important dates.
+- Fee information.
+- Scholarship information.
+- Online enquiry.
+
+### Departments
+- Individual department pages.
+- Faculty profiles.
+- Department facilities.
+- Research.
+- Publications.
+
+### Campus Life
+- Infrastructure.
+- Library.
+- Hostel.
+- Sports.
+- Green Campus.
+- Medicinal Garden.
+- Canteen.
+- Student activities.
+
+### Achievements
+- Student achievements.
+- Faculty achievements.
+- Awards.
+- Events.
+- Publications.
+
+### Placements
+- Placement cell.
+- Recruiters.
+- Activities.
+- Career guidance.
+
+### News & Events
+- News archive.
+- Event calendar.
+- Individual news details.
+
+### Gallery
+- Photo gallery.
+- Video gallery.
+
+### Contact
+- Contact information.
+- Enquiry form.
+- Map.
+
+### Utility pages
+- Privacy Policy.
+- Terms and Conditions.
+- Sitemap.
+- Downloads.
+- Feedback.
+- 404 page.
+
+All pages must be accessible through the navigation system and manageable through the CMS.
+
+---
+
+# 6. Complete Admin Dashboard
+
+Create a separate professional admin application.
+
+Route:
+`/admin`
+
+The admin dashboard must have its own layout, navigation, authentication screen and responsive design.
+
+### Admin dashboard design
+
+Use a modern SaaS dashboard interface.
+
+Design:
+- Purple and white theme.
+- Collapsible sidebar.
+- Top navigation.
+- Breadcrumbs.
+- Profile menu.
+- Notifications.
+- Search.
+- Dashboard statistics.
+- Attractive data tables.
+- Filters.
+- Modals.
+- Confirmation dialogs.
+- Charts.
+- Responsive layout.
+
+Sidebar navigation:
+
+1. Dashboard
+2. Website Appearance
+3. Pages
+4. Header & Navigation
+5. Footer Manager
+6. Logo & Branding
+7. Theme & Colors
+8. Sliders & Banners
+9. Media Library
+10. Programs
+11. Departments
+12. Faculty & Staff
+13. Admissions
+14. Enquiries
+15. News & Events
+16. Achievements
+17. Placements
+18. Campus Life
+19. Gallery
+20. Testimonials
+21. Downloads
+22. Chatbot Manager
+23. SEO Manager
+24. Contact & Social Links
+25. Forms Manager
+26. Users & Roles
+27. Notifications
+28. Website Settings
+29. Installation Information
+30. Activity Logs
+
+Every menu item must open a functional management screen.
+
+Do not create an admin dashboard where all buttons are decorative.
+
+Use working mock CRUD operations with demo data.
+
+---
+
+# 7. Website Appearance Manager
+
+This is one of the most important features.
+
+Create a powerful visual website customization interface.
+
+The administrator must be able to control the complete website appearance.
+
+### Theme management
+
+Editable settings:
+
+- Primary color.
+- Secondary color.
+- Accent color.
+- Background color.
+- Heading color.
+- Body text color.
+- Link color.
+- Button colors.
+- Button hover colors.
+- Header background.
+- Footer background.
+- Navigation background.
+- Card background.
+- Border colors.
+
+Provide:
+- Color picker.
+- HEX input.
+- RGB input if practical.
+- Live preview.
+- Save changes.
+- Reset to defaults.
+- Preset themes.
+
+### Theme presets
+
+Create:
+- Royal Purple & Gold.
+- Elegant Lavender.
+- Classic University.
+- Deep Purple.
+- Modern White.
+
+Allow administrators to create and save custom themes.
+
+### Typography
+
+Allow:
+- Heading font selection.
+- Body font selection.
+- Font size.
+- Font weight.
+- Line height.
+- Heading spacing.
+
+### Layout customization
+
+Allow:
+- Content width.
+- Header height.
+- Footer style.
+- Section spacing.
+- Card radius.
+- Button radius.
+- Shadow intensity.
+- Sidebar layout.
+
+### Live preview
+
+Provide desktop, tablet and mobile preview modes.
+
+Changes should update the preview immediately.
+
+---
+
+# 8. Header & Navigation Manager
+
+Create a dedicated header management module.
+
+Editable components:
+
+- Logo.
+- College name.
+- Affiliation text.
+- Approval badges.
+- Phone number.
+- Email.
+- Working hours.
+- Top announcement bar.
+- Main navigation.
+- Apply Now button.
+- Header background.
+- Header text colors.
+- Sticky header option.
+- Mobile header layout.
+
+Provide drag-and-drop navigation management.
+
+Support desktop and mobile-specific navigation settings.
+
+---
+
+# 9. Footer Manager
+
+Allow administrators to:
+
+- Add and remove footer columns.
+- Edit column titles.
+- Add and remove links.
+- Edit contact information.
+- Change logo.
+- Change footer background.
+- Change typography.
+- Edit copyright text.
+- Manage social media icons.
+- Add custom HTML-free content blocks.
+- Preview desktop and mobile footer.
+
+All changes must reflect in the public website preview.
+
+---
+
+# 10. Page Builder / Content Management
+
+Create a flexible visual CMS.
+
+Administrators should be able to manage every website page without programming.
+
+### Page management
+
+- Create page.
+- Edit page.
+- Duplicate page.
+- Delete page.
+- Publish.
+- Save as draft.
+- Schedule publication.
+- Change page URL.
+- Change page title.
+- Set SEO information.
+- Enable/disable page.
+- Preview page.
+
+### Section builder
+
+Support reusable section types:
+
+- Hero.
+- Image with text.
+- Text section.
+- Statistics.
+- Card grid.
+- Program cards.
+- Department cards.
+- Gallery.
+- Testimonials.
+- News list.
+- Event list.
+- CTA banner.
+- Contact section.
+- FAQ.
+- Video section.
+- Custom content section.
+
+Administrators must be able to:
+- Add sections.
+- Remove sections.
+- Duplicate sections.
+- Reorder sections using drag and drop.
+- Edit section content.
+- Change images.
+- Change backgrounds.
+- Adjust section spacing.
+- Hide sections.
+- Preview responsive layouts.
+
+Provide a professional visual editing experience.
+
+Do not require HTML or CSS knowledge.
+
+---
+
+# 11. Slider & Banner Manager
+
+Create a dedicated module for homepage sliders and promotional banners.
+
+Features:
+- Create slider.
+- Edit slider.
+- Delete slider.
+- Upload desktop image.
+- Upload mobile image.
+- Add heading.
+- Add description.
+- Add buttons.
+- Configure CTA links.
+- Choose text alignment.
+- Configure image overlays.
+- Choose animation.
+- Set slide duration.
+- Reorder slides.
+- Schedule campaigns.
+- Enable or disable slides.
+- Preview.
+
+Also create reusable promotional banner management.
+
+---
+
+# 12. Media Library
+
+Create a central media management system.
+
+Support:
+- Image uploads.
+- Video references.
+- PDFs.
+- Brochures.
+- Academic documents.
+- Faculty photographs.
+- College logos.
+- Banner images.
+
+Features:
+- Grid and list views.
+- Search.
+- Filter by type.
+- Categories.
+- Folder organization.
+- File information.
+- File size.
+- Alt text.
+- Image title.
+- Replace image.
+- Copy media reference.
+- Preview.
+- Delete with confirmation.
+
+During frontend development, use mock upload services and browser-local preview.
+
+Later connect to backend storage through a storage adapter.
+
+Do not assume browser-local files are permanent uploads.
+
+---
+
+# 13. Chatbot — KITS AI Assistant
+
+Create a premium chatbot available throughout the public website.
+
+Chatbot name:
+"KITS AI Assistant"
+
+### Frontend design
+
+Create a floating chat button at the bottom-right corner.
+
+When opened, show an elegant chat panel.
+
+Include:
+- Welcome message.
+- Assistant icon/avatar.
+- Typing animation.
+- Message history.
+- User messages.
+- Assistant responses.
+- Suggested questions.
+- Text input.
+- Send button.
+- Minimize.
+- Close.
+- Mobile full-screen chat experience.
+
+### Suggested questions
+
+- About the College.
+- Available Courses.
+- B.Pharm Eligibility.
+- Admission Process.
+- College Facilities.
+- Departments.
+- Hostel Information.
+- Contact Details.
+- Location and Directions.
+- Working Hours.
+
+### Chatbot administration
+
+Create a complete chatbot manager.
+
+Admin can:
+- Enable/disable chatbot.
+- Change chatbot name.
+- Upload avatar.
+- Edit welcome message.
+- Change chatbot colors.
+- Edit suggested questions.
+- Add FAQ questions.
+- Add FAQ answers.
+- Create FAQ categories.
+- Add keywords.
+- Add contact information.
+- Add admission information.
+- Configure fallback responses.
+- Manage conversation history.
+- Enable/disable individual FAQ entries.
+
+### Chatbot knowledge management
+
+Build an editable knowledge base with categories:
+
+1. College Information.
+2. Admissions.
+3. Courses.
+4. Eligibility.
+5. Departments.
+6. Faculty.
+7. Facilities.
+8. Hostel.
+9. Contact.
+10. Academic Information.
+
+For the frontend demo, create a deterministic local FAQ matching engine using editable mock data.
+
+Create an AI provider adapter for future backend integration.
+
+Do not expose AI API keys in frontend code.
+
+The future chatbot backend should be able to retrieve approved information from the website CMS and knowledge base.
+
+If the assistant cannot answer something, it should politely provide the official college contact information instead of inventing an answer.
+
+---
+
+# 14. Admission Enquiry Management
+
+Create a complete admission enquiry interface.
+
+Public form fields:
+
+- Student Name.
+- Parent/Guardian Name.
+- Mobile Number.
+- Email.
+- Interested Program.
+- Qualification.
+- City.
+- State.
+- Message.
+
+Include validation.
+
+Admin features:
+- View enquiries.
+- Search enquiries.
+- Filter by program.
+- Filter by status.
+- Assign enquiry.
+- Add internal notes.
+- Change enquiry status.
+- Mark follow-up date.
+- Export CSV.
+- View enquiry details.
+
+Status options:
+- New.
+- Contacted.
+- Interested.
+- Follow-up.
+- Converted.
+- Not Interested.
+
+Use mock records and local demo persistence.
+
+---
+
+# 15. News, Events & Announcements Manager
+
+Create a complete CMS for news and events.
+
+Fields:
+- Title.
+- Slug.
+- Description.
+- Featured image.
+- Category.
+- Event date.
+- Venue.
+- Author.
+- Publication date.
+- Status.
+- SEO title.
+- SEO description.
+
+Features:
+- Add.
+- Edit.
+- Delete.
+- Publish.
+- Draft.
+- Schedule.
+- Search.
+- Filter.
+- Preview.
+
+Create a public-facing news archive and individual news pages.
+
+---
+
+# 16. Faculty & Staff Manager
+
+Create a faculty management module.
+
+Fields:
+- Name.
+- Photograph.
+- Designation.
+- Department.
+- Qualification.
+- Experience.
+- Biography.
+- Email.
+- Research interests.
+- Publications.
+- Display order.
+- Active status.
+
+Create faculty profile cards and detail pages.
+
+Do not invent faculty names or credentials.
+
+---
+
+# 17. SEO Manager
+
+Create an SEO management interface.
+
+Editable:
+- Website title.
+- Website description.
+- Default keywords.
+- Favicon.
+- Default social sharing image.
+- Page-specific SEO title.
+- Meta description.
+- Canonical URL.
+- Open Graph image.
+- Robots index settings.
+
+Support:
+- SEO-friendly URLs.
+- Sitemap configuration.
+- Breadcrumbs.
+- Structured data configuration.
+- Page previews for search engines.
+
+For the frontend demo, provide editable SEO configuration and show a simulated preview. Actual sitemap generation, server headers and structured data delivery must be implemented in the future backend or deployment layer.
+
+---
+
+# 18. Users & Roles Management
+
+Create a role management interface.
+
+Suggested roles:
+
+1. Super Administrator.
+2. Website Administrator.
+3. Content Editor.
+4. Admissions Manager.
+5. Academic Manager.
+6. Faculty Manager.
+
+Features:
+- Add user.
+- Edit user.
+- Assign role.
+- Activate/deactivate user.
+- Reset password UI.
+- Permission management.
+- User activity logs.
+
+Create granular permission groups:
+
+- Website management.
+- Appearance management.
+- Page management.
+- Admissions.
+- News.
+- Academic content.
+- Chatbot.
+- User management.
+- System settings.
+
+For the frontend prototype, authentication must use a clearly identified demo adapter.
+
+Never implement production password storage in localStorage.
+
+Real authentication, password hashing, sessions, CSRF protection and authorization must be supplied by the future backend.
+
+---
+
+# 19. First-Time Installation Wizard
+
+This is a major requirement.
+
+Create a dedicated installation experience for the future self-hosted website.
+
+Route:
+`/install`
+
+The installer must have an elegant, professional step-by-step interface.
+
+### Step 1: Welcome
+
+Display:
+- KITS Website Installation.
+- Welcome message.
+- System setup introduction.
+- Installation progress.
+
+Button:
+Start Installation.
+
+### Step 2: System Requirements
+
+Display checks for:
+- Application version.
+- Runtime compatibility.
+- Database support.
+- Storage permissions.
+- File upload support.
+- Environment configuration.
+
+Show:
+- Passed.
+- Warning.
+- Failed.
+
+For the frontend prototype, use simulated checks.
+
+### Step 3: Database Configuration
+
+Create an attractive database setup form.
+
+Fields:
+- Database Type.
+- Database Host.
+- Database Port.
+- Database Name.
+- Database Username.
+- Database Password.
+
+Default database type:
+MySQL.
+
+Provide:
+- Test Connection button.
+- Connection status.
+- Error display.
+- Continue button.
+
+IMPORTANT: This is only an installer UI during the frontend phase. Do not attempt to connect directly to MySQL from the browser. Real connection testing and configuration file generation will be implemented by the backend installer.
+
+### Step 4: Website Configuration
+
+Fields:
+- Website Name.
+- Website URL.
+- Website Description.
+- College Email.
+- Contact Number.
+- Timezone.
+- Default Language.
+- Default Theme.
+
+Default timezone:
+Asia/Kolkata.
+
+### Step 5: Administrator Setup
+
+Fields:
+- Administrator Name.
+- Email Address.
+- Username.
+- Password.
+- Confirm Password.
+
+Include password strength indicator and validation.
+
+Never display or save real administrator credentials in browser localStorage.
+
+### Step 6: Installation Summary
+
+Show all configuration information in a review screen.
+
+Allow administrators to go back and edit.
+
+### Step 7: Installation Complete
+
+Display:
+- Installation success screen.
+- Website URL.
+- Admin login URL.
+- Setup summary.
+
+Buttons:
+- Visit Website.
+- Open Admin Dashboard.
+
+### Installation architecture
+
+Create a frontend installation state machine and mock installer service.
+
+Prepare clear backend interfaces for:
+- System requirement checks.
+- Database connection test.
+- Environment configuration.
+- Database migrations.
+- Initial administrator creation.
+- Installation lock.
+- Installation status.
+
+The actual installer will later be implemented server-side.
+
+Never allow `/install` to be used to reset or overwrite an already installed production website.
+
+---
+
+# 20. Website Settings
+
+Create a comprehensive settings module.
+
+Categories:
+
+### General
+- Website name.
+- Website URL.
+- College name.
+- Description.
+- Timezone.
+- Language.
+- Contact email.
+- Contact phone.
+
+### Branding
+- Main logo.
+- Footer logo.
+- Mobile logo.
+- Favicon.
+- Login logo.
+
+### Contact
+- Address.
+- Phone numbers.
+- Email.
+- Working hours.
+- Map location.
+- WhatsApp number.
+
+### Social Media
+- Facebook.
+- Instagram.
+- YouTube.
+- LinkedIn.
+- X.
+
+### Integrations
+Create configuration screens for future integrations:
+- Google Analytics.
+- Google Search Console.
+- Google Maps.
+- WhatsApp.
+- SMTP.
+- AI chatbot provider.
+
+Do not place real secret keys in the frontend.
+
+### Maintenance
+- Maintenance mode UI.
+- Maintenance message.
+- Coming soon page.
+- Website status.
+
+---
+
+# 21. Admin Dashboard Home
+
+Create a useful overview dashboard.
+
+Display cards for:
+- Total website pages.
+- Published pages.
+- Total enquiries.
+- New enquiries.
+- News articles.
+- Upcoming events.
+- Media files.
+- Chatbot FAQ entries.
+
+Create charts for:
+- Enquiries over time.
+- Enquiries by program.
+- Enquiry status distribution.
+
+Include:
+- Recent enquiries.
+- Recent activities.
+- Quick actions.
+- Upcoming events.
+- Website health summary.
+
+Use demo data, clearly identified as sample data.
+
+---
+
+# 22. Mobile Experience
+
+The public website must be designed mobile-first.
+
+Do not simply shrink the desktop layout.
+
+Create a genuinely polished mobile experience.
+
+Mobile features:
+- Compact header.
+- College logo.
+- Hamburger navigation.
+- Optimized hero carousel.
+- Large touch-friendly buttons.
+- Swipeable program cards.
+- Horizontal scrolling categories.
+- Responsive gallery.
+- Floating chatbot.
+- Sticky Apply Now CTA where appropriate.
+- Easy-to-use forms.
+- Click-to-call.
+- WhatsApp contact.
+- Mobile-friendly footer.
+
+Create an optional app-like mobile navigation bar:
+
+- Home.
+- Courses.
+- Admissions.
+- Gallery.
+- Contact.
+
+Use appropriate icons.
+
+The admin dashboard must also be responsive and usable on tablets and mobile phones.
+
+---
+
+# 23. Technical Architecture
+
+Use a clean and maintainable frontend architecture.
+
+Preferred stack:
+
+- React.
+- TypeScript.
+- Vite.
+- Tailwind CSS.
+- shadcn/ui.
+- Lucide icons.
+- React Router.
+- React Hook Form.
+- Zod validation.
+- Recharts for charts.
+
+Use the available compatible dependencies in the Lovable environment.
+
+### Architecture principles
+
+Separate:
+
+- Public website components.
+- Admin components.
+- Authentication interfaces.
+- CMS services.
+- Theme services.
+- Media services.
+- Chatbot services.
+- Enquiry services.
+- Installation services.
+- Mock data.
+- API adapters.
+
+Suggested project structure:
+
+```text
+src/
+  app/
+    router/
+    providers/
+  components/
+    common/
+    layout/
+    forms/
+    cards/
+    navigation/
+  pages/
+    public/
+    admin/
+    install/
+  admin/
+    dashboard/
+    appearance/
+    pages/
+    menus/
+    footer/
+    media/
+    sliders/
+    admissions/
+    chatbot/
+    seo/
+    settings/
+    users/
+  components/
+    chatbot/
+  services/
+    api/
+    auth/
+    cms/
+    theme/
+    media/
+    chatbot/
+    installation/
+  data/
+    mock/
+    defaults/
+  hooks/
+  types/
+  utils/
+  styles/
+```
+
+Use reusable components and strongly typed data models.
+
+Create an API client abstraction with a configurable base URL.
+
+Example future API structure:
+
+```text
+/api/v1/auth
+/api/v1/install
+/api/v1/dashboard
+/api/v1/settings
+/api/v1/themes
+/api/v1/menus
+/api/v1/pages
+/api/v1/media
+/api/v1/sliders
+/api/v1/programs
+/api/v1/departments
+/api/v1/faculty
+/api/v1/admissions
+/api/v1/enquiries
+/api/v1/news
+/api/v1/events
+/api/v1/gallery
+/api/v1/testimonials
+/api/v1/chatbot
+/api/v1/seo
+/api/v1/users
+/api/v1/roles
+/api/v1/activity-logs
+```
+
+Prepare typed service methods and mock implementations.
+
+Do not couple the components directly to mock data.
+
+The backend should be replaceable without rewriting the entire frontend.
+
+---
+
+# 24. Demo Data and Frontend Functionality
+
+The project must be fully navigable and testable before backend development.
+
+Create realistic sample data for:
+
+- Pages.
+- Menus.
+- Themes.
+- Sliders.
+- Programs.
+- Departments.
+- Faculty.
+- News.
+- Events.
+- Testimonials.
+- Gallery.
+- Enquiries.
+- FAQs.
+- Users.
+- Roles.
+- Settings.
+
+### Demo functionality
+
+Make these actions work:
+
+- Create.
+- Read.
+- Update.
+- Delete.
+- Search.
+- Filter.
+- Sort.
+- Pagination.
+- Drag and drop.
+- Preview.
+- Save.
+- Publish.
+- Enable/disable.
+
+Use browser-local persistence for non-sensitive demo content so the user can refresh the page and continue testing.
+
+Create a reset-demo-data option.
+
+Display a clear DEMO MODE indicator in the admin dashboard.
+
+### Critical live preview requirement
+
+When an administrator changes:
+- Theme colors.
+- Logo.
+- Header.
+- Footer.
+- Navigation.
+- Homepage slider.
+- Homepage content.
+
+The public website preview must update immediately.
+
+Use a centralized theme/configuration state.
+
+Do not build a disconnected admin dashboard where changes have no effect on the public website.
+
+---
+
+# 25. Security and Future Backend Readiness
+
+Follow these requirements:
+
+- Never expose database credentials in frontend code.
+- Never expose AI API keys in frontend code.
+- Never store production passwords in localStorage.
+- Never treat frontend role checks as authorization.
+- Do not allow browser-side direct MySQL access.
+- Prepare server-side authorization interfaces.
+- Validate all form inputs.
+- Use safe rendering for user-generated content.
+- Prepare secure media upload interfaces.
+- Prepare CSRF-protected backend integration.
+- Prepare rate-limited chatbot and enquiry endpoints.
+
+All sensitive operations must eventually be performed by the backend.
+
+---
+
+# 26. Performance and Accessibility
+
+Optimize for:
+
+- Mobile performance.
+- Fast page loading.
+- Responsive image delivery.
+- Lazy loading.
+- Code splitting.
+- Reusable components.
+- SEO.
+- Accessibility.
+- Keyboard navigation.
+- Semantic HTML.
+- Appropriate color contrast.
+
+Avoid unnecessary animation libraries and heavy dependencies.
+
+Use reduced-motion support.
+
+---
+
+# 27. Required Routes
+
+Public routes:
+
+```text
+/
+/about
+/about/history
+/about/vision-mission
+/about/principal-message
+/about/governance
+/academics
+/academics/programs
+/academics/calendar
+/academics/syllabus
+/academics/examination-cell
+/admissions
+/admissions/eligibility
+/admissions/process
+/departments
+/departments/:slug
+/faculty
+/campus-life
+/campus-life/:slug
+/achievements
+/placements
+/news
+/news/:slug
+/events
+/events/:slug
+/gallery
+/gallery/:slug
+/downloads
+/contact
+/feedback
+/privacy-policy
+/terms
+/sitemap
+```
+
+Admin routes:
+
+```text
+/admin/login
+/admin
+/admin/appearance
+/admin/themes
+/admin/header
+/admin/navigation
+/admin/footer
+/admin/pages
+/admin/pages/:id
+/admin/sliders
+/admin/banners
+/admin/media
+/admin/programs
+/admin/departments
+/admin/faculty
+/admin/admissions
+/admin/enquiries
+/admin/news
+/admin/events
+/admin/achievements
+/admin/placements
+/admin/campus-life
+/admin/gallery
+/admin/testimonials
+/admin/chatbot
+/admin/chatbot/faqs
+/admin/seo
+/admin/forms
+/admin/users
+/admin/roles
+/admin/notifications
+/admin/settings
+/admin/activity-logs
+```
+
+Installer routes:
+
+```text
+/install
+/install/requirements
+/install/database
+/install/website
+/install/admin
+/install/complete
+```
+
+---
+
+# 28. Implementation Priorities
+
+Build the application in the following order:
+
+**Phase 1 — Public Website**
+- Global design system.
+- Header and footer.
+- Homepage.
+- All public pages.
+- Mobile responsiveness.
+- Navigation.
+- Chatbot UI.
+
+**Phase 2 — Admin Dashboard**
+- Dashboard layout.
+- Demo authentication.
+- Admin home.
+- Website appearance.
+- Theme manager.
+- Header manager.
+- Footer manager.
+- Menu manager.
+
+**Phase 3 — CMS**
+- Page builder.
+- Media library.
+- Slider manager.
+- Programs.
+- Departments.
+- Faculty.
+- News and events.
+- Admissions.
+- Enquiries.
+- Gallery.
+- Testimonials.
+
+**Phase 4 — Advanced Management**
+- Chatbot manager.
+- FAQ knowledge base.
+- SEO.
+- Users and roles.
+- Website settings.
+- Activity logs.
+
+**Phase 5 — Installation Wizard**
+- System checks UI.
+- Database configuration UI.
+- Website configuration.
+- Administrator setup.
+- Installation summary.
+- Completion screen.
+
+**Phase 6 — Testing**
+- Test all public routes.
+- Test every admin menu.
+- Test CRUD operations.
+- Test responsive layouts.
+- Test theme changes.
+- Test live previews.
+- Test chatbot responses.
+- Test demo persistence.
+- Test installation flow.
+- Fix all console errors.
+
+---
+
+# 29. Final Quality Requirements
+
+The final result must be a complete frontend prototype, not just a collection of screenshots.
+
+Every page must have meaningful content and a finished design.
+
+Every dashboard section must have a working interface.
+
+All major admin operations must be testable with demo data.
+
+The public website must reflect changes made in the admin dashboard.
+
+The installer must have a complete navigable flow.
+
+The chatbot must demonstrate useful answers based on editable demo knowledge.
+
+The project must be prepared for a custom MySQL backend without Supabase dependencies.
+
+Do not stop after building the homepage.
+
+Do not generate empty placeholder admin screens.
+
+Do not use generic dashboard templates.
+
+Do not leave buttons without actions.
+
+Do not invent institutional approvals, placement statistics, faculty credentials or admission claims.
+
+Use actual existing institutional content where available, and mark unverified information for administrator review.
+
+**Final objective:** Deliver a premium, elegant, fully responsive KITS College of Pharmacy for Women website with a complete self-hosting-ready CMS frontend, powerful visual customization, chatbot management and installation wizard, ready for subsequent custom backend development.

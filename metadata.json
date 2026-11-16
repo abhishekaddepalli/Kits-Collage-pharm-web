@@ -1,0 +1,7 @@
+{
+  "name": "KITS College of Pharmacy for Women — Website & CMS",
+  "description": "Official institutional website, custom CMS administration dashboard, KITS AI Assistant, and self-hosted installation wizard for KITS College of Pharmacy for Women. Designed & Developed by Infiniforge Technologies.",
+  "author": "Infiniforge Technologies",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

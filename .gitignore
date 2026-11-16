@@ -1,0 +1,12 @@
+node_modules/
+build/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+.kits-dev-db.json
+.kits-dev-uploads/
+cpanel-dist/
+.playwright-cli/
+.aistudio/
