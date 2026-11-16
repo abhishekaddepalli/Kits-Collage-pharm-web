@@ -14,9 +14,11 @@
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-    # Block direct web access to hidden dotfiles, .env, SQL dumps, or composer manifests
+    # Block direct web access to sensitive directories and manifests
     RewriteRule (^|/)\.(?!well-known/) - [F,L]
-    RewriteRule \.(env|sql|log|lock|json|sh)$ - [F,L]
+    RewriteRule ^(backend|src|docs|\.git) - [F,L]
+    RewriteRule (^|/)(composer\.(json|lock)|package(-lock)?\.json|\.env.*|\.cpanel\.yml)$ - [F,L]
+    RewriteRule \.(sql|log|lock|sh)$ - [F,L]
 
     # Route backend endpoints, dynamic XML sitemap, and robots.txt to Laravel index.php
     RewriteCond %{REQUEST_URI} ^/(api|sanctum|sitemap\.xml|robots\.txt) [NC]
