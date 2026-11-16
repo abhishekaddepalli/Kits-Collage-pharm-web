@@ -3,6 +3,8 @@
         Options -MultiViews -Indexes
     </IfModule>
 
+    DirectoryIndex index.html index.php
+
     RewriteEngine On
 
     # Force HTTPS on cPanel production (preserve localhost/IP testing)
@@ -14,13 +16,13 @@
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-    # Block direct web access to sensitive directories and manifests
+    # Block direct web access to sensitive directories, git, and manifests
     RewriteRule (^|/)\.(?!well-known/) - [F,L]
     RewriteRule ^(backend|src|docs|\.git) - [F,L]
     RewriteRule (^|/)(composer\.(json|lock)|package(-lock)?\.json|\.env.*|\.cpanel\.yml)$ - [F,L]
     RewriteRule \.(sql|log|lock|sh)$ - [F,L]
 
-    # Route backend endpoints, dynamic XML sitemap, and robots.txt to Laravel index.php
+    # Route backend API endpoints, dynamic XML sitemap, and robots.txt to Laravel index.php
     RewriteCond %{REQUEST_URI} ^/(api|sanctum|sitemap\.xml|robots\.txt) [NC]
     RewriteRule ^ index.php [L]
 
@@ -29,7 +31,11 @@
     RewriteCond %{REQUEST_FILENAME} -d
     RewriteRule ^ - [L]
 
-    # Fallback all SPA client routes to Laravel web controller (adds X-Robots-Tag noindex on admin/install)
+    # Fallback all SPA client routes to index.html if present, else index.php
+    RewriteCond %{DOCUMENT_ROOT}/index.html -f [OR]
+    RewriteCond %{REQUEST_FILENAME}/index.html -f
+    RewriteRule ^ index.html [L]
+
     RewriteRule ^ index.php [L]
 </IfModule>
 
@@ -37,4 +43,8 @@
     Header always set X-Frame-Options "SAMEORIGIN"
     Header always set X-Content-Type-Options "nosniff"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Add noindex to admin, login, and installer routes directly in Apache
+    SetEnvIf Request_URI "^/(admin-login|control-panel|install|forgot-password|reset-password)" NOINDEX_ADMIN
+    Header set X-Robots-Tag "noindex, nofollow, noarchive" env=NOINDEX_ADMIN
 </IfModule>
