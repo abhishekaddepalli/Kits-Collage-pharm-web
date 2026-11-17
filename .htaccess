@@ -1,0 +1,37 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    DirectoryIndex index.php index.html
+
+    RewriteEngine On
+
+    # Force HTTPS on production
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1)(:[0-9]+)?$ [NC]
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # Forward Authorization header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Block direct web access to sensitive directories and configs
+    RewriteRule ^(backend|docs|\.git|\.cpanel\.yml) - [F,L]
+    RewriteRule (^|/)(composer\.(json|lock)|package(-lock)?\.json|\.env.*|\.kits-data\.json)$ - [F,L]
+    RewriteRule \.(sql|log|lock|sh)$ - [F,L]
+
+    # Allow direct access to real existing files (JS, CSS, images, etc.)
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Route all other requests (SPA frontend routes and API endpoints) to index.php
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
