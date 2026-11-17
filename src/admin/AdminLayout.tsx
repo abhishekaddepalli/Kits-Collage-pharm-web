@@ -48,6 +48,7 @@ import {
 import { useCms } from '../app/providers/CmsContext';
 import { KitsLogo } from '../components/common/KitsLogo';
 import { SeoHead } from '../components/common/SeoHead';
+import { ErrorBoundary } from '../components/common/ErrorBoundary';
 import { authService } from '../services/auth/authService';
 import type { PermissionKey } from '../types/cms';
 
@@ -176,8 +177,8 @@ export const AdminLayout: React.FC = () => {
     return <Navigate to={adminLoginPath} replace />;
   }
 
-  const unreadCount = state.notifications.filter((n) => !n.read).length;
-  const newEnquiriesCount = state.enquiries.filter((e) => e.status === 'New').length;
+  const unreadCount = (state.notifications || []).filter((n) => !n.read).length;
+  const newEnquiriesCount = (state.enquiries || []).filter((e) => e.status === 'New').length;
 
   const baseSegments = adminPanelPath.split('/').filter(Boolean).length;
   const pathSegments = location.pathname.split('/').filter(Boolean);
@@ -447,10 +448,10 @@ export const AdminLayout: React.FC = () => {
                     </Link>
                   </div>
                   <div className="divide-y divide-slate-100 max-h-60 overflow-y-auto">
-                    {state.notifications.length === 0 ? (
+                    {(state.notifications || []).length === 0 ? (
                       <div className="py-3 text-xs text-slate-500 text-center">No notifications yet.</div>
                     ) : (
-                      state.notifications.slice(0, 4).map((n) => (
+                      (state.notifications || []).slice(0, 4).map((n) => (
                         <div key={n.id} className="py-2 text-xs">
                           <div className="font-semibold text-[#171238]">{n.title}</div>
                           <div className="text-slate-500">{n.message}</div>
@@ -499,7 +500,9 @@ export const AdminLayout: React.FC = () => {
 
         {/* Active Admin Module Viewport */}
         <main className="flex-1 p-4 sm:p-6 overflow-x-hidden">
-          <Outlet />
+          <ErrorBoundary fallbackTitle="Module View Recovered">
+            <Outlet />
+          </ErrorBoundary>
         </main>
       </div>
 

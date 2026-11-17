@@ -1,20 +1,9 @@
 ---
 deployment:
   tasks:
-    - export CPANEL_HOME=$(eval echo ~$USER)
-    - export DEPLOYPATH=$CPANEL_HOME/public_html
-    - export APPPATH=$CPANEL_HOME/application
-    - /bin/mkdir -p $DEPLOYPATH
-    - /bin/mkdir -p $APPPATH
-    - /bin/cp -R dist/* $DEPLOYPATH/
-    - /bin/cp cpanel/public_html/.htaccess $DEPLOYPATH/.htaccess
-    - /bin/cp cpanel/public_html/index.php $DEPLOYPATH/index.php
-    - /bin/cp -R backend/* $APPPATH/
-    - test -f $APPPATH/.env || /bin/cp backend/.env.example $APPPATH/.env
-    - /bin/mkdir -p $APPPATH/storage/app/public/uploads
-    - /bin/mkdir -p $APPPATH/storage/framework/cache
-    - /bin/mkdir -p $APPPATH/storage/framework/sessions
-    - /bin/mkdir -p $APPPATH/storage/framework/views
-    - /bin/mkdir -p $APPPATH/storage/logs
-    - /bin/mkdir -p $APPPATH/bootstrap/cache
-    - /bin/chmod -R 775 $APPPATH/storage $APPPATH/bootstrap/cache
+    - export DEPLOYPATH=${DEPLOYPATH:-$(pwd)}
+    - /bin/cp -R dist/* $DEPLOYPATH/ 2>/dev/null || true
+    - /bin/cp -R assets $DEPLOYPATH/ 2>/dev/null || true
+    - /bin/cp .htaccess $DEPLOYPATH/.htaccess 2>/dev/null || true
+    - /bin/cp index.php $DEPLOYPATH/index.php 2>/dev/null || true
+    - /bin/cp seedData.json $DEPLOYPATH/seedData.json 2>/dev/null || true

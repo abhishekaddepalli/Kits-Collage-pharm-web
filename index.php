@@ -478,16 +478,119 @@ if (strpos($path, '/api/v1/') === 0 || strpos($path, '/sanctum/') === 0) {
 
     // H. Admin Control Panel Endpoints
     if (strpos($path, '/api/v1/admin/') === 0) {
-        if ($path === '/api/v1/admin/dashboard' || $path === '/api/v1/admin/bootstrap') {
+        if ($path === '/api/v1/admin/bootstrap') {
+            $cms = $db['cms'] ?? [];
+            $cms['enquiries'] = $db['enquiries'] ?? ($cms['enquiries'] ?? []);
+            $cms['notifications'] = $db['notifications'] ?? ($cms['notifications'] ?? []);
+            $cms['activityLogs'] = $db['activityLogs'] ?? ($cms['activityLogs'] ?? []);
+            $cms['users'] = array_map(function($u) {
+                return [
+                    'id' => $u['id'] ?? 'usr-1',
+                    'name' => $u['name'] ?? 'Super Administrator',
+                    'username' => $u['username'] ?? 'admin',
+                    'email' => $u['email'] ?? 'kitspharmacollege@gmail.com',
+                    'role' => $u['role'] ?? 'Super Administrator',
+                    'permissions' => ['*'],
+                    'active' => $u['active'] ?? true,
+                    'lastLogin' => $u['lastLogin'] ?? 'Never'
+                ];
+            }, $db['users'] ?? ($cms['users'] ?? []));
+            $cms['installed'] = file_exists($lockFile);
+            $cms['runtimeConfig'] = [
+                'adminLoginPath' => $db['adminLoginPath'] ?? '/admin-login',
+                'adminPanelPath' => $db['adminPanelPath'] ?? '/control-panel'
+            ];
+            sendJson(['success' => true, 'data' => $cms]);
+        }
+
+        if ($path === '/api/v1/admin/dashboard') {
+            $cms = $db['cms'] ?? [];
+            $enquiries = $db['enquiries'] ?? ($cms['enquiries'] ?? []);
+            $pages = $cms['pages'] ?? [];
+            $news = $cms['newsEvents'] ?? [];
+            $media = $cms['media'] ?? [];
+            $faqs = $cms['chatbot']['faqs'] ?? [];
+            $notifs = $db['notifications'] ?? ($cms['notifications'] ?? []);
+
+            $newEnq = 0;
+            $convEnq = 0;
+            $progCounts = ['B.Pharmacy' => 0, 'M.Pharmacy' => 0];
+            $monthCounts = [];
+
+            foreach ($enquiries as $e) {
+                $st = $e['status'] ?? 'New';
+                if ($st === 'New') $newEnq++;
+                if ($st === 'Converted') $convEnq++;
+
+                $pr = $e['interestedProgram'] ?? 'B.Pharmacy';
+                if (stripos($pr, 'M.Pharm') !== false) {
+                    $progCounts['M.Pharmacy'] = ($progCounts['M.Pharmacy'] ?? 0) + 1;
+                } else {
+                    $progCounts['B.Pharmacy'] = ($progCounts['B.Pharmacy'] ?? 0) + 1;
+                }
+
+                $m = !empty($e['createdAt']) ? date('M Y', strtotime($e['createdAt'])) : date('M Y');
+                $monthCounts[$m] = ($monthCounts[$m] ?? 0) + 1;
+            }
+
+            $monthlyTrend = [];
+            foreach ($monthCounts as $m => $c) {
+                $monthlyTrend[] = ['month' => $m, 'enquiries' => $c];
+            }
+            if (empty($monthlyTrend)) {
+                $monthlyTrend[] = ['month' => date('M Y'), 'enquiries' => count($enquiries)];
+            }
+
+            $programBreakdown = [];
+            foreach ($progCounts as $pr => $cnt) {
+                $programBreakdown[] = ['program' => $pr, 'count' => $cnt];
+            }
+
+            $pubPages = count(array_filter($pages, function($p) {
+                return ($p['status'] ?? '') === 'published';
+            }));
+            $unreadNotifs = count(array_filter($notifs, function($n) {
+                return empty($n['read']);
+            }));
+
             sendJson([
                 'success' => true,
                 'data' => [
-                    'enquiriesCount' => count($db['enquiries'] ?? []),
-                    'enquiries' => $db['enquiries'] ?? [],
-                    'cms' => $db['cms'] ?? []
+                    'kpis' => [
+                        'totalEnquiries' => count($enquiries),
+                        'newEnquiries' => $newEnq,
+                        'convertedEnquiries' => $convEnq,
+                        'publishedPages' => $pubPages,
+                        'totalPages' => count($pages),
+                        'mediaCount' => count($media),
+                        'newsCount' => count($news),
+                        'faqCount' => count($faqs),
+                        'chatbotTotalQueries' => 0,
+                        'unreadNotifications' => $unreadNotifs
+                    ],
+                    'monthlyTrend' => $monthlyTrend,
+                    'programBreakdown' => $programBreakdown
                 ]
             ]);
         }
+
+        if (preg_match('#^/api/v1/admin/enquiries/([^/]+)$#', $path, $m) && $method === 'PUT') {
+            $enqId = urldecode($m[1]);
+            $body = getJsonBody();
+            if (isset($db['enquiries'])) {
+                foreach ($db['enquiries'] as &$e) {
+                    if ($e['id'] === $enqId) {
+                        if (isset($body['status'])) $e['status'] = $body['status'];
+                        if (isset($body['notes'])) $e['notes'] = $body['notes'];
+                        if (isset($body['followUpDate'])) $e['followUpDate'] = $body['followUpDate'];
+                        break;
+                    }
+                }
+                saveDb($db);
+            }
+            sendJson(['success' => true, 'message' => 'Enquiry updated successfully.']);
+        }
+
         if ($path === '/api/v1/admin/install-info') {
             sendJson([
                 'success' => true,
@@ -503,6 +606,60 @@ if (strpos($path, '/api/v1/') === 0 || strpos($path, '/sanctum/') === 0) {
                 ]
             ]);
         }
+
+        // Generic mutation handler for CMS sections
+        if ($method === 'PUT' || $method === 'POST') {
+            $body = getJsonBody();
+            $subPath = preg_replace('#^/api/v1/admin/#', '', $path);
+            
+            $moduleMap = [
+                'appearance' => 'appearance',
+                'header' => 'header',
+                'footer' => 'footer',
+                'menus' => 'navigation',
+                'sliders' => 'sliders',
+                'banners' => 'banners',
+                'programs' => 'programs',
+                'departments' => 'departments',
+                'faculty' => 'faculty',
+                'pages' => 'pages',
+                'news' => 'newsEvents',
+                'achievements' => 'achievements',
+                'placements' => 'placements',
+                'campus-life' => 'campusLife',
+                'gallery' => 'gallery',
+                'testimonials' => 'testimonials',
+                'downloads' => 'downloads',
+                'chatbot' => 'chatbot',
+                'seo' => 'seo',
+                'settings' => 'settings',
+                'forms' => 'forms',
+                'roles' => 'roles',
+                'notifications' => 'notifications'
+            ];
+
+            if (isset($moduleMap[$subPath])) {
+                $targetKey = $moduleMap[$subPath];
+                if (isset($body[$targetKey])) {
+                    $db['cms'][$targetKey] = $body[$targetKey];
+                } elseif (isset($body['items']) && $targetKey === 'navigation') {
+                    $db['cms']['navigation'] = $body['items'];
+                } elseif (isset($body['sliders']) && $targetKey === 'sliders') {
+                    $db['cms']['sliders'] = $body['sliders'];
+                } elseif (isset($body['banners']) && $targetKey === 'banners') {
+                    $db['cms']['banners'] = $body['banners'];
+                } elseif (isset($body['programs']) && $targetKey === 'programs') {
+                    $db['cms']['programs'] = $body['programs'];
+                } elseif (isset($body['departments']) && $targetKey === 'departments') {
+                    $db['cms']['departments'] = $body['departments'];
+                } else {
+                    $db['cms'][$targetKey] = $body;
+                }
+                saveDb($db);
+                sendJson(['success' => true, 'message' => ucfirst($targetKey) . ' saved successfully.']);
+            }
+        }
+
         // Generic success for CMS updates in admin
         sendJson(['success' => true, 'message' => 'Settings saved successfully.']);
     }
@@ -535,7 +692,50 @@ if ($path === '/robots.txt') {
 }
 
 // -----------------------------------------------------------------------------
-// 3. REACT 19 SPA FRONTEND DELIVERY
+// 3. STATIC ASSETS & MEDIA SERVING (/assets/* and /uploads/*)
+// -----------------------------------------------------------------------------
+if (strpos($path, '/assets/') === 0 || strpos($path, '/uploads/') === 0) {
+    $filePath = null;
+    $candidates = [
+        $rootDir . $path,
+        $rootDir . '/dist' . $path
+    ];
+    foreach ($candidates as $cand) {
+        if (file_exists($cand) && is_file($cand)) {
+            $filePath = $cand;
+            break;
+        }
+    }
+    
+    if ($filePath) {
+        $ext = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
+        $mimes = [
+            'js' => 'application/javascript; charset=UTF-8',
+            'css' => 'text/css; charset=UTF-8',
+            'svg' => 'image/svg+xml',
+            'png' => 'image/png',
+            'jpg' => 'image/jpeg',
+            'jpeg' => 'image/jpeg',
+            'webp' => 'image/webp',
+            'gif' => 'image/gif',
+            'ico' => 'image/x-icon',
+            'woff' => 'font/woff',
+            'woff2' => 'font/woff2',
+            'ttf' => 'font/ttf',
+            'json' => 'application/json; charset=UTF-8'
+        ];
+        $contentType = $mimes[$ext] ?? 'application/octet-stream';
+        header('Content-Type: ' . $contentType);
+        header('Cache-Control: public, max-age=31536000, immutable');
+        readfile($filePath);
+        exit;
+    }
+    http_response_code(404);
+    sendJson(['success' => false, 'message' => 'Asset file not found.'], 404);
+}
+
+// -----------------------------------------------------------------------------
+// 4. REACT 19 SPA FRONTEND DELIVERY
 // -----------------------------------------------------------------------------
 // Check for noindex on private administration routes
 if (preg_match('#^/(admin-login|control-panel|install|forgot-password|reset-password)#', $path)) {

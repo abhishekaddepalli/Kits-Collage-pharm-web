@@ -46,18 +46,25 @@ export const AdminDashboard: React.FC = () => {
     return () => {
       active = false;
     };
-  }, [state.enquiries.length, state.pages.length, state.media.length]);
+  }, [state.enquiries?.length, state.pages?.length, state.media?.length]);
 
-  const publishedPages = metrics?.kpis.publishedPages ?? state.pages.filter((p) => p.status === 'published').length;
-  const totalPages = metrics?.kpis.totalPages ?? state.pages.length;
-  const totalEnquiries = metrics?.kpis.totalEnquiries ?? state.enquiries.length;
-  const newEnquiries = metrics?.kpis.newEnquiries ?? state.enquiries.filter((e) => e.status === 'New').length;
-  const newsCount = metrics?.kpis.newsCount ?? state.newsEvents.length;
-  const upcomingEvents = state.newsEvents.filter((n) => n.type === 'event').length;
-  const mediaCount = metrics?.kpis.mediaCount ?? state.media.length;
-  const faqCount = metrics?.kpis.faqCount ?? state.chatbot.faqs.length;
+  const pages = state.pages || [];
+  const enquiries = state.enquiries || [];
+  const newsEvents = state.newsEvents || [];
+  const media = state.media || [];
+  const faqs = state.chatbot?.faqs || [];
+  const activityLogs = state.activityLogs || [];
 
-  const statusMap = summarizeEnquiriesByStatus(state.enquiries);
+  const publishedPages = metrics?.kpis?.publishedPages ?? pages.filter((p) => p.status === 'published').length;
+  const totalPages = metrics?.kpis?.totalPages ?? pages.length;
+  const totalEnquiries = metrics?.kpis?.totalEnquiries ?? enquiries.length;
+  const newEnquiries = metrics?.kpis?.newEnquiries ?? enquiries.filter((e) => e.status === 'New').length;
+  const newsCount = metrics?.kpis?.newsCount ?? newsEvents.length;
+  const upcomingEvents = newsEvents.filter((n) => n.type === 'event').length;
+  const mediaCount = metrics?.kpis?.mediaCount ?? media.length;
+  const faqCount = metrics?.kpis?.faqCount ?? faqs.length;
+
+  const statusMap = summarizeEnquiriesByStatus(enquiries);
   const statusChartData = Object.entries(statusMap)
     .filter(([, count]) => count > 0)
     .map(([name, value]) => ({ name, value }));
@@ -69,8 +76,8 @@ export const AdminDashboard: React.FC = () => {
           count: item.count,
         }))
       : Object.entries(
-          state.enquiries.reduce<Record<string, number>>((acc, e) => {
-            const key = e.interestedProgram.includes('B.Pharm') ? 'B.Pharmacy' : 'M.Pharmacy';
+          enquiries.reduce<Record<string, number>>((acc, e) => {
+            const key = (e.interestedProgram || '').includes('B.Pharm') ? 'B.Pharmacy' : 'M.Pharmacy';
             acc[key] = (acc[key] || 0) + 1;
             return acc;
           }, {})
@@ -95,7 +102,7 @@ export const AdminDashboard: React.FC = () => {
         <div>
           <h1 className="text-2xl font-bold text-[#171238]">Institutional CMS Overview</h1>
           <p className="text-xs text-slate-500 mt-0.5">
-            Live database statistics for {state.settings.general.collegeName}
+            Live database statistics for {state.settings?.general?.collegeName || 'KITS College of Pharmacy for Women'}
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -225,7 +232,7 @@ export const AdminDashboard: React.FC = () => {
               Manage All →
             </Link>
           </div>
-          {state.enquiries.length === 0 ? (
+          {enquiries.length === 0 ? (
             <p className="text-xs text-slate-500 py-4">No admission enquiries have been received yet.</p>
           ) : (
             <div className="overflow-x-auto">
@@ -239,7 +246,7 @@ export const AdminDashboard: React.FC = () => {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
-                  {state.enquiries.slice(0, 5).map((e) => (
+                  {enquiries.slice(0, 5).map((e) => (
                     <tr key={e.id}>
                       <td className="py-2.5 pr-3 font-semibold text-[#171238]">{e.studentName}</td>
                       <td className="py-2.5 pr-3 text-slate-600">{e.interestedProgram}</td>
@@ -260,11 +267,11 @@ export const AdminDashboard: React.FC = () => {
               Full Logs →
             </Link>
           </div>
-          {state.activityLogs.length === 0 ? (
+          {activityLogs.length === 0 ? (
             <p className="text-xs text-slate-500 py-4">No administrative activity logged yet.</p>
           ) : (
             <ul className="space-y-3 text-xs">
-              {state.activityLogs.slice(0, 5).map((log) => (
+              {activityLogs.slice(0, 5).map((log) => (
                 <li key={log.id} className="pb-2.5 border-b border-slate-100 last:border-0">
                   <div className="font-semibold text-[#171238]">{log.action}</div>
                   <div className="text-slate-500 mt-0.5 tabular-nums">

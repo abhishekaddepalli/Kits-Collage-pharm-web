@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { CmsProvider, useCms } from './app/providers/CmsContext';
+import { ErrorBoundary } from './components/common/ErrorBoundary';
 import { PublicLayout } from './components/layout/PublicLayout';
 import { HomePage } from './pages/public/HomePage';
 import { AboutPage } from './pages/public/AboutPage';
@@ -178,10 +179,12 @@ const AppRoutes: React.FC = () => {
 
 export default function App() {
   return (
-    <CmsProvider>
-      <BrowserRouter>
-        <AppRoutes />
-      </BrowserRouter>
-    </CmsProvider>
+    <ErrorBoundary>
+      <CmsProvider>
+        <BrowserRouter>
+          <AppRoutes />
+        </BrowserRouter>
+      </CmsProvider>
+    </ErrorBoundary>
   );
 }
